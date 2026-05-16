@@ -416,7 +416,7 @@ delete_selected_cmd = Command(title="Delete Selected", callback=delete_selected,
 
 
 def clear_scene(viewer: "Viewer"):
-    for obj in viewer.scene.objects:
+    for obj in list(viewer.scene.objects):
         viewer.scene.remove(obj, rebuild_buffers=False)
         del obj
 

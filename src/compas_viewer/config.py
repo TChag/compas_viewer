@@ -4,6 +4,7 @@ from dataclasses import field
 from dataclasses import is_dataclass
 from typing import Literal
 from typing import Optional
+import typing
 
 from PySide6.QtCore import QUrl
 from PySide6.QtGui import QDesktopServices
@@ -56,7 +57,7 @@ class ConfigBase:
 
     def __post_init__(self):
         for field_name, field_value in self.__dict__.items():
-            field_type = self.__annotations__[field_name]
+            field_type = typing.get_type_hints(type(self))[field_name]
             if isinstance(field_value, dict) and is_dataclass(field_type):
                 # Convert dict to dataclass if the field type is a dataclass
                 setattr(self, field_name, field_type(**field_value))  # type: ignore
