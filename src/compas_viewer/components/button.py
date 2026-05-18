@@ -10,8 +10,11 @@ from PySide6 import QtWidgets
 from .component import Component
 
 
-def set_icon_path(icon_name: str) -> str:
-    path = QtGui.QIcon(str(pathlib.Path(__file__).parent.parent / "assets" / "icons" / icon_name))
+import os
+from compas_viewer import HERE
+
+def set_icon_path(icon_name: str) -> QtGui.QIcon:
+    path = QtGui.QIcon(os.path.join(HERE, "assets", "icons", icon_name))
     return path
 
 

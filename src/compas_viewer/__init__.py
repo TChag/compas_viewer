@@ -24,7 +24,10 @@ __email__ = "li.chen@arch.ethz.ch"
 __version__ = "2.0.2"
 
 
+import sys
 HERE = os.path.dirname(__file__)
+if getattr(sys, 'frozen', False):
+    HERE = os.path.abspath(os.path.join(sys._MEIPASS, "compas_viewer"))
 
 HOME = os.path.abspath(os.path.join(HERE, "../../"))
 DATA = os.path.abspath(os.path.join(HOME, "data"))
